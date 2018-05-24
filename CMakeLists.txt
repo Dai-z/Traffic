@@ -24,12 +24,14 @@ add_executable(${PROJECT_NAME}
 
     #######
     src/items/crossings.cpp
+    src/items/signals.cpp
 
     #######
     include/mainwindow.hpp
     include/render.hpp
     include/item_manager.hpp
     include/crossings.hpp
+    include/signals.hpp
 )
 
 target_link_libraries(${PROJECT_NAME}
