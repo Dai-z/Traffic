@@ -54,6 +54,12 @@ Signals::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidge
         painter->drawLine(c.x() - 30, c.y() - 23, c.x() - 30, c.y() - 17);
         painter->drawLine(c.x() - 30, c.y() - 17, c.x() - 33, c.y() - 20);
         painter->drawLine(c.x() - 30, c.y() - 17, c.x() - 27, c.y() - 20);
+        painter->drawLine(c.x() + 17, c.y() + 30, c.x() + 23, c.y() + 30);
+        painter->drawLine(c.x() + 17, c.y() + 30, c.x() + 20, c.y() + 27);
+        painter->drawLine(c.x() + 17, c.y() + 30, c.x() + 20, c.y() + 33);
+        painter->drawLine(c.x() + 17, c.y() + 40, c.x() + 23, c.y() + 40);
+        painter->drawLine(c.x() + 23, c.y() + 40, c.x() + 20, c.y() + 37);
+        painter->drawLine(c.x() + 23, c.y() + 40, c.x() + 20, c.y() + 43);
         painter->setPen(QPen());
         // draw light
         brush.setColor(color_[i << 1]);
