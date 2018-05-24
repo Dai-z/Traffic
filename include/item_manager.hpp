@@ -1,3 +1,4 @@
+#include "signals.hpp"
 #include <QGraphicsScene>
 #include <QObject>
 
@@ -17,4 +18,6 @@ class ItemManager : public QObject
 
   private:
     QGraphicsScene* scene_;
+    Signals* signals_;
+    int counter_;
 };

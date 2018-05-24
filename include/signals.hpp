@@ -13,6 +13,11 @@ class Signals : public QGraphicsItem
     // get the color of the nearest signal light
     QColor getColor(const QPoint pos);
     // TODO(daiz) a function to update signal color
+    void changeColor(bool toYellow);
+    inline int getTime(int idx)
+    {
+        return time_[idx];
+    }
 
   private:
     // color of 18(1 crossing has 2 signal lights) signal lights:
@@ -20,7 +25,7 @@ class Signals : public QGraphicsItem
     // left-right use odd index
     QVector<QColor> color_;
     // display time for 3 colors
-    // 0: red 1: green 2: yellow
+    // 0: red(longest) 1: green 2: yellow(shortest)
     int time_[3];
     // the center of 9 crossings
     QVector<QPoint> centers_;
