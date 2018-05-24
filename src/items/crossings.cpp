@@ -34,26 +34,26 @@ Crossings::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
     // a crossing is like
 
     //         |  |
-    //         |  |
+    //  ooo |  |
     // -------   ------
     // -------   ------
-    //         |  |
-    //         |  |
+    //         |  |8
+    //         |  |o
     for (auto iter : centers_) {
         // set pen
         QPen pen(Qt::white, 3);
         painter->setPen(pen);
         // up-left corner
-        painter->drawLine(iter + QPoint(-7, -7), iter + QPoint(-7, -100));
-        painter->drawLine(iter + QPoint(-7, -7), iter + QPoint(-100, -7));
+        painter->drawLine(iter + QPoint(-10, -10), iter + QPoint(-10, -100));
+        painter->drawLine(iter + QPoint(-10, -10), iter + QPoint(-100, -10));
         // up-right corner
-        painter->drawLine(iter + QPoint(7, -7), iter + QPoint(7, -100));
-        painter->drawLine(iter + QPoint(7, -7), iter + QPoint(100, -7));
+        painter->drawLine(iter + QPoint(10, -10), iter + QPoint(10, -100));
+        painter->drawLine(iter + QPoint(10, -10), iter + QPoint(100, -10));
         // down-left corner
-        painter->drawLine(iter + QPoint(-7, 7), iter + QPoint(-7, 100));
-        painter->drawLine(iter + QPoint(-7, 7), iter + QPoint(-100, 7));
+        painter->drawLine(iter + QPoint(-10, 10), iter + QPoint(-10, 100));
+        painter->drawLine(iter + QPoint(-10, 10), iter + QPoint(-100, 10));
         // down-right corner
-        painter->drawLine(iter + QPoint(7, 7), iter + QPoint(7, 100));
-        painter->drawLine(iter + QPoint(7, 7), iter + QPoint(100, 7));
+        painter->drawLine(iter + QPoint(10, 10), iter + QPoint(10, 100));
+        painter->drawLine(iter + QPoint(10, 10), iter + QPoint(100, 10));
     }
 }
