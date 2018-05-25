@@ -11,7 +11,7 @@ class Signals : public QGraphicsItem
     QRectF boundingRect() const;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     // get the color of the nearest signal light
-    QColor getColor(const QPoint pos);
+    QColor getColor(const QPointF pos);
     // TODO(daiz) a function to update signal color
     void changeColor(bool toYellow);
     inline int getTime(int idx)

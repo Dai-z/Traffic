@@ -8,6 +8,8 @@ ItemManager::ItemManager(QObject* parent, QGraphicsScene* scene)
   , scene_(scene)
   , counter_(0)
 {
+    // add seed for random num generator
+    qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
     init_pos_.push_back(QPoint(-200, -300));
     init_pos_.push_back(QPoint(0, -300));
     init_pos_.push_back(QPoint(200, -300));
@@ -29,8 +31,6 @@ ItemManager::~ItemManager()
 void
 ItemManager::init()
 {
-    // add seed for random num generator
-    qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
     // add map
     scene_->addItem(new Crossings());
     // add signals
@@ -49,23 +49,53 @@ ItemManager::init()
     });
     s_timer->start(1000);
     // add cars
-    auto car = new Car();
-    cars_.push_back(car);
-    int w = car->getWidth(), l = car->getLength();
+    for (int i = 0; i < 5; i++) {
+        auto car = new Car();
+        int w = car->getWidth(), l = car->getLength();
 
-    QPoint pos = init_pos_[qrand() % 12];
-    if (pos.x() == 300) {
-        pos += QPoint(-l / 2, -w / 2);
-        car->setTransform(QTransform().rotate(90));
+        QPoint pos = init_pos_[qrand() % 12];
+        if (pos.x() == 300) {
+            pos += QPoint(-l / 2, -w / 2);
+            car->setTransform(QTransform().rotate(90));
+            car->setDirection(QPoint(-1, 0));
+        }
+        if (pos.x() == -300) {
+            pos += QPoint(l / 2, w / 2);
+            car->setTransform(QTransform().rotate(-90));
+            car->setDirection(QPoint(1, 0));
+        }
+        if (pos.y() == 300) {
+            pos += QPoint(w / 2, -l / 2);
+            car->setDirection(QPoint(0, -1));
+        }
+        if (pos.y() == -300) {
+            pos += QPoint(-w / 2, l / 2);
+            car->setDirection(QPoint(0, 1));
+        }
+        car->setPos(pos);
+        if (!scene_->collidingItems(car).isEmpty()) {
+            delete car;
+            continue;
+        }
+        cars_.push_back(car);
+        scene_->addItem(car);
     }
-    if (pos.x() == -300) {
-        pos += QPoint(l / 2, w / 2);
-        car->setTransform(QTransform().rotate(-90));
-    }
-    if (pos.y() == 300)
-        pos += QPoint(w / 2, -l / 2);
-    if (pos.y() == -300)
-        pos += QPoint(-w / 2, l / 2);
-    car->setPos(pos);
-    scene_->addItem(car);
+    // timer for moving car
+    auto c_timer = new QTimer(this);
+    connect(c_timer, &QTimer::timeout, [=]() {
+        for (auto iter : cars_) {
+            QPointF head_pos = iter->pos();
+            if (iter->getDirection().x() == 0)
+                head_pos += QPointF(0, iter->getLength() / 2 * iter->getDirection().y());
+            else
+                head_pos += QPointF(iter->getWidth() / 2 * iter->getDirection().x(), 0);
+
+            if (signals_->getColor(head_pos) == Qt::red)
+                continue;
+            iter->setPos(iter->pos() + iter->getDirection());
+            if (!scene_->collidingItems(iter).isEmpty())
+                iter->setPos(iter->pos() - iter->getDirection());
+        }
+    });
+    c_timer->start(1000 / 30.0);
 }

@@ -18,6 +18,14 @@ class Car : public QGraphicsItem
     {
         return l_;
     }
+    inline QPoint getDirection()
+    {
+        return direction_;
+    }
+    inline void setDirection(QPoint d)
+    {
+        direction_ = d;
+    }
 
   private:
     // width and length of car in graphics

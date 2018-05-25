@@ -5,7 +5,7 @@ Car::Car(QGraphicsItem* parent)
   : QGraphicsItem(parent)
   , dire_decided_(false)
   , w_(8)
-  , l_(8)
+  , l_(10)
 {
     this->setFlag(QGraphicsItem::ItemIsMovable, true);
 }
@@ -25,6 +25,8 @@ Car::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* w
 {
     QBrush brush(Qt::cyan);
     painter->setBrush(brush);
-    painter->setPen(QPen(Qt::black, 1));
-    painter->drawRect(-w_ / 2, -l_ / 2, w_, l_);
+    int line_w = 1;
+    painter->setPen(QPen(Qt::black, line_w));
+    // the width of pen
+    painter->drawRect(-w_ / 2 + line_w, -l_ / 2 + line_w, w_ - 2 * line_w, l_ - 2 * line_w);
 }
