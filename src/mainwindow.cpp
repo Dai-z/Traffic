@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget* parent)
         view->update();
         view->scene()->update();
     });
-    timer->start(1000 / 30.0);
+    timer->start(1000 / 20.0);
 }
 
 MainWindow::~MainWindow()

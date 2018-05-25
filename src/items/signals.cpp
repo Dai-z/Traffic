@@ -73,8 +73,8 @@ Signals::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidge
     }
 }
 
-QColor
-Signals::getColor(const QPointF pos)
+bool
+Signals::canPass(const QPointF pos, const QPoint dire)
 {
     int id = -1;
     if (abs(pos.y() + 200) < 20)
@@ -85,7 +85,7 @@ Signals::getColor(const QPointF pos)
         id = 6;
     // too far from crossings
     if (id == -1)
-        return Qt::green;
+        return true;
 
     if (abs(pos.x()) < 20)
         id += 1;
@@ -93,19 +93,19 @@ Signals::getColor(const QPointF pos)
         id += 2;
     // too far from crossings
     if (id % 3 == 0 && abs(pos.x() + 200) > 20)
-        return Qt::green;
-    if (abs(pos.x() - centers_[id].x()) == 10)
+        return true;
+    if (dire.x() * (centers_[id].x() - pos.x()) == 10)
         if (color_[id * 2 + 1] == Qt::green)
-            return Qt::green;
+            return true;
         else // yellow or red
-            return Qt::red;
-    else if (abs(pos.y() - centers_[id].y()) == 10)
+            return false;
+    else if (dire.y() * (centers_[id].y()) - pos.y() == 10)
         if (color_[id * 2] == Qt::green)
-            return Qt::green;
+            return true;
         else
-            return Qt::red;
+            return false;
     else
-        return Qt::green;
+        return true;
 }
 
 void

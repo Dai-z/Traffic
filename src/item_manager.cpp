@@ -90,12 +90,12 @@ ItemManager::init()
             else
                 head_pos += QPointF(iter->getWidth() / 2 * iter->getDirection().x(), 0);
 
-            if (signals_->getColor(head_pos) == Qt::red)
+            if (!signals_->canPass(head_pos, iter->getDirection()))
                 continue;
             iter->setPos(iter->pos() + iter->getDirection());
             if (!scene_->collidingItems(iter).isEmpty())
                 iter->setPos(iter->pos() - iter->getDirection());
         }
     });
-    c_timer->start(1000 / 30.0);
+    c_timer->start(1000 / 20.0);
 }

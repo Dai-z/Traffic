@@ -10,8 +10,8 @@ class Signals : public QGraphicsItem
 
     QRectF boundingRect() const;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
-    // get the color of the nearest signal light
-    QColor getColor(const QPointF pos);
+    // can pass or not at this position
+    bool canPass(const QPointF pos, const QPoint dire);
     // TODO(daiz) a function to update signal color
     void changeColor(bool toYellow);
     inline int getTime(int idx)
