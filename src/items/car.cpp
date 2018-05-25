@@ -1,5 +1,6 @@
 #include "car.hpp"
 #include <QPainter>
+#include <iostream>
 
 Car::Car(QGraphicsItem* parent)
   : QGraphicsItem(parent)
@@ -8,6 +9,10 @@ Car::Car(QGraphicsItem* parent)
   , l_(10)
 {
     this->setFlag(QGraphicsItem::ItemIsMovable, true);
+    speed_ = qrand() % 21;
+    speed_ /= 10;
+    speed_ += 1;
+    std::cout << "speed: " << speed_ << std::endl;
 }
 
 Car::~Car()

@@ -84,17 +84,26 @@ ItemManager::init()
     auto c_timer = new QTimer(this);
     connect(c_timer, &QTimer::timeout, [=]() {
         for (auto iter : cars_) {
-            QPointF head_pos = iter->pos();
+            float speed = iter->getSpeed();
+            QPointF head_pos = iter->pos(), body_to_head;
+            // calculate the distance from center of car to the head of car
             if (iter->getDirection().x() == 0)
-                head_pos += QPointF(0, iter->getLength() / 2 * iter->getDirection().y());
+                body_to_head = QPointF(0, iter->getLength() / 2 * iter->getDirection().y());
             else
-                head_pos += QPointF(iter->getWidth() / 2 * iter->getDirection().x(), 0);
-
+                body_to_head = QPointF(iter->getWidth() / 2 * iter->getDirection().x(), 0);
+            head_pos += body_to_head;
+            // if signal is red, wait
             if (!signals_->canPass(head_pos, iter->getDirection()))
                 continue;
-            iter->setPos(iter->pos() + iter->getDirection());
+            QPointF next_pos = iter->pos() + speed * iter->getDirection() + body_to_head;
+            // not skip the line before signal(use head position)
+            signals_->slowBeforeLine(head_pos, next_pos);
+            // calculate the center position of car that should go
+            next_pos -= body_to_head;
+            iter->setPos(next_pos);
+            // if will collide with other cars, wait
             if (!scene_->collidingItems(iter).isEmpty())
-                iter->setPos(iter->pos() - iter->getDirection());
+                iter->setPos(iter->pos() - speed * iter->getDirection());
         }
     });
     c_timer->start(1000 / 20.0);

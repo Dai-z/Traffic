@@ -14,6 +14,7 @@ class Signals : public QGraphicsItem
     bool canPass(const QPointF pos, const QPoint dire);
     // TODO(daiz) a function to update signal color
     void changeColor(bool toYellow);
+    void slowBeforeLine(QPointF pos, QPointF& next_pos);
     inline int getTime(int idx)
     {
         return time_[idx];

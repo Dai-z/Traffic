@@ -127,3 +127,26 @@ Signals::changeColor(bool toYellow)
         }
     }
 }
+
+void
+Signals::slowBeforeLine(QPointF pos, QPointF& next_pos)
+{
+    for (auto c : centers_) {
+        if ((pos.x() - c.x() + 10) * (next_pos.x() - c.x() + 10) < 0) {
+            next_pos.setX(c.x() - 10);
+            return;
+        }
+        if ((pos.x() - c.x() - 10) * (next_pos.x() - c.x() - 10) < 0) {
+            next_pos.setX(c.x() + 10);
+            return;
+        }
+        if ((pos.y() - c.y() + 10) * (next_pos.y() - c.y() + 10) < 0) {
+            next_pos.setY(c.y() - 10);
+            return;
+        }
+        if ((pos.y() - c.y() - 10) * (next_pos.y() - c.y() - 10) < 0) {
+            next_pos.setY(c.y() + 10);
+            return;
+        }
+    }
+}

@@ -26,15 +26,20 @@ class Car : public QGraphicsItem
     {
         direction_ = d;
     }
+    inline float getSpeed()
+    {
+        return speed_;
+    }
 
   private:
     // width and length of car in graphics
     int w_, l_;
     // if the car has decided the direction to go at crossing
     bool dire_decided_;
-    // speed of car(1-5)
+    // speed of car(1.0-3.0)
     float speed_;
+    //  counter for changing speed after some time
+    int counter_;
     // unit vector
     QPoint direction_;
-    // TODO(daiz) use a counter to change speed after some time
 };
