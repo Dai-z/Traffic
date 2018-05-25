@@ -20,8 +20,12 @@ class ItemManager : public QObject
 
   private:
     QGraphicsScene* scene_;
+
     Signals* signals_;
     // for changing signals' color
     int counter_;
+
     QVector<Car*> cars_;
+    // initial position of cars
+    QVector<QPoint> init_pos_;
 };

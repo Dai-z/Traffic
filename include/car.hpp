@@ -14,14 +14,14 @@ class Car : public QGraphicsItem
     {
         return w_;
     }
-    inline int getHeight()
+    inline int getLength()
     {
-        return h_;
+        return l_;
     }
 
   private:
-    // width and height of car in graphics
-    int w_, h_;
+    // width and length of car in graphics
+    int w_, l_;
     // if the car has decided the direction to go at crossing
     bool dire_decided_;
     // speed of car(1-5)
