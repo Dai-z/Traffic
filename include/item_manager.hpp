@@ -1,6 +1,8 @@
+#include "car.hpp"
 #include "signals.hpp"
 #include <QGraphicsScene>
 #include <QObject>
+#include <QtCore>
 
 class ItemManager : public QObject
 {
@@ -19,5 +21,7 @@ class ItemManager : public QObject
   private:
     QGraphicsScene* scene_;
     Signals* signals_;
+    // for changing signals' color
     int counter_;
+    QVector<Car*> cars_;
 };

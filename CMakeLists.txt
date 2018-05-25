@@ -25,6 +25,7 @@ add_executable(${PROJECT_NAME}
     #######
     src/items/crossings.cpp
     src/items/signals.cpp
+    src/items/car.cpp
 
     #######
     include/mainwindow.hpp
@@ -32,6 +33,7 @@ add_executable(${PROJECT_NAME}
     include/item_manager.hpp
     include/crossings.hpp
     include/signals.hpp
+    include/car.hpp
 )
 
 target_link_libraries(${PROJECT_NAME}
