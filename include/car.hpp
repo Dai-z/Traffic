@@ -26,10 +26,7 @@ class Car : public QGraphicsItem
     {
         direction_ = d;
     }
-    inline float getSpeed()
-    {
-        return speed_;
-    }
+    float getSpeed();
 
   private:
     // width and length of car in graphics
