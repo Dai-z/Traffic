@@ -11,7 +11,7 @@ install qt
 
 use cmake-gui to build or use command(see "Install&Build")
 
-##Install&Buid
+## Install&Buid
 open terminal(cmd in Windows), cd to /path/to/repository
 
 enter command below
@@ -23,3 +23,5 @@ $ make
 
 At last run "traffic" in build folder
 
+## Uncompleted simple demo
+![](./pics/traffic.gif)
