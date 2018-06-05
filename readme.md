@@ -2,7 +2,7 @@ How to install and use.
 
 ## Preinstall
 ### Linux
-$ sudo apt-get install cmake qt
+$ sudo apt-get install cmake qt5-default libqt5qml5 qtdeclarative5-dev
 
 ### Windows
 
