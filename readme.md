@@ -1,7 +1,7 @@
 How to install and use.
 
 ## Preinstall
-### Linux
+### Linux(Ubuntu)
 $ sudo apt-get install cmake qt5-default libqt5qml5 qtdeclarative5-dev
 maybe some of them are unnecessary
 
@@ -18,7 +18,9 @@ remember to set the CMAKE_PREFIX_PATH environment variable to the install prefix
 
 ![1528353914552](pics/1528353914552.png)
 
-you can also use qt creator or other ide(such as VisualStudio, just remember to use cmake).
+you can also use qt creator or other ide(such as VisualStudio).
+you will also need to add bin path of qt into enviroment variable and set some other things.
+so.....you'd better use LINUX!
 
 ## Install&Buid
 open terminal, cd to /path/to/repository
