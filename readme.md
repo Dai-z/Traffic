@@ -14,11 +14,14 @@ download msi file and install
 download qt here:
 https://www.qt.io/download
 download and install
+remember to set the CMAKE_PREFIX_PATH environment variable to the install prefix of Qt 5.
 
-use cmake-gui to build or use command(see "Install&Build")
+![1528353914552](pics/1528353914552.png)
+
+you can also use qt creator or other ide(such as VisualStudio, just remember to use cmake).
 
 ## Install&Buid
-open terminal(cmd in Windows), cd to /path/to/repository
+open terminal, cd to /path/to/repository
 
 enter command below
 $ mkdir build
